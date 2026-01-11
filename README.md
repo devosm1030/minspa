@@ -1,2 +1,1 @@
-# minspa
-A modern, mini, vanilla UI SPA framework.
+# minspa - A modular, micro, vanilla UI SPA framework
