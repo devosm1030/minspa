@@ -175,7 +175,6 @@ Programmatically navigates to a specified path. Updates the browser URL and rend
 |-----------|----------|----------|-------------------------|
 | `path`    | `string` | Yes      | The path to navigate to |
 
-
 - If the path is invalid and no auth callback is registered, redirects to the first registered route
 - If the path is invalid and an auth callback is registered, the auth callback handles the navigation
 - Updates `window.history` using `pushState`

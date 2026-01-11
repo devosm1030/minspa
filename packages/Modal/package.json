@@ -1,0 +1,19 @@
+{
+  "name": "@minspa/modal",
+  "version": "0.0.0",
+  "description": "A vanilla UI modal service module.",
+  "main": "MinspaModal.js",
+  "author": "Mike DeVos",
+  "license": "MIT",
+  "scripts": {
+    "publish": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devosm1030/minspa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devosm1030/minspa/issues"
+  },
+  "homepage": "https://github.com/devosm1030/minspa#readme"
+}
