@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom'
+import { expect, vi } from 'vitest'
 
 describe('Navbar.js unit tests', () => {
   beforeEach(async () => {
@@ -82,5 +83,30 @@ describe('Navbar.js unit tests', () => {
     expect(navbarContent.classList.contains('collapsed')).toBe(false)
     toggleBtn.click()
     expect(navbarContent.classList.contains('collapsed')).toBe(true)
+  })
+
+  test('it integrates with router properly when router exists prior to navbar creation', async () => {
+    expect.assertions(2)
+    const { Navbar } = await import('@minspa/navbar')
+    const pages = [{ path: '/page1', navName: 'Page1' }]
+    let navListnerCb = null
+    window.minspa = { router: { registerNavListener: cb => { navListnerCb = cb }, navigateTo: vi.fn() } }
+    const navbar = new Navbar(document.body, pages).render()
+    vi.spyOn(navbar, 'newPageDisplayed')
+    navbar.onNavLinkClickedCb('/page1')
+    expect(window.minspa.router.navigateTo).toHaveBeenCalledWith('/page1')
+    navListnerCb('/page1')
+    expect(navbar.newPageDisplayed).toHaveBeenCalledWith('/page1')
+  })
+
+  test('it integrates with router properly when router does not exist prior to navbar creation', async () => {
+    expect.assertions(1)
+    const { Navbar } = await import('@minspa/navbar')
+    const pages = [{ path: '/page1', navName: 'Page1' }]
+    const navbar = new Navbar(document.body, pages)
+    const mockNavTo = vi.fn()
+    window.minspa.onrouterinit({ registerNavListener: vi.fn(), navigateTo: mockNavTo })
+    navbar.onNavLinkClickedCb('/page1')
+    expect(mockNavTo).toHaveBeenCalledWith('/page1')
   })
 })

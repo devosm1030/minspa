@@ -216,8 +216,8 @@ class Navbar {
 
   connectToRouter (router) {
     // connect navbar to an existing minspa/router instance
-    window.minspa.router.registerNavListener(path => this.newPageDisplayed(path)) // auto update on route change
-    this.onNavLinkClicked(path => window.minspa.router.navigateTo(path)) // auto nav on link click
+    router.registerNavListener(path => this.newPageDisplayed(path)) // auto update on route change
+    this.onNavLinkClicked(path => router.navigateTo(path)) // auto nav on link click
   }
 
   onNavLinkClicked (cb) {
