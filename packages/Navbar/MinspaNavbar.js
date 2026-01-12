@@ -210,8 +210,14 @@ class Navbar {
     Object.assign(this, { rootElem, navPages, userid, navBarStylesheet: styleSheet })
     this.navbarElem = null
     this.shadowRoot = null
-    window.minspa?.router?.registerNavListener?.(path => this.newPageDisplayed(path)) // if minspa/router in use, auto update on route change
-    if (window.minspa) this.onNavLinkClicked(path => window.minspa.router.navigateTo(path)) // if minspa/router in use, auto nav on link click
+    window.minspa = window.minspa || {}
+    window.minspa.router ? this.connectToRouter(window.minspa.router) : window.minspa.onrouterinit = router => this.connectToRouter(router)
+  }
+
+  connectToRouter (router) {
+    // connect navbar to an existing minspa/router instance
+    window.minspa.router.registerNavListener(path => this.newPageDisplayed(path)) // auto update on route change
+    this.onNavLinkClicked(path => window.minspa.router.navigateTo(path)) // auto nav on link click
   }
 
   onNavLinkClicked (cb) {

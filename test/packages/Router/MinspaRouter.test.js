@@ -4,6 +4,7 @@ describe('MinspaRouter.js unit tests', () => {
     document.body.innerHTML = ''
     window.onpopstate = null
     window.history.replaceState({}, '', '/')
+    if (window.minspa) delete window.minspa
   })
 
   afterEach(() => {
@@ -13,6 +14,7 @@ describe('MinspaRouter.js unit tests', () => {
     document.body.innerHTML = ''
     window.onpopstate = null
     window.history.replaceState({}, '', '/')
+    if (window.minspa) delete window.minspa
   })
 
   afterAll(() => {
@@ -100,7 +102,7 @@ describe('MinspaRouter.js unit tests', () => {
   })
 
   test('pathAuthorized calls auth callback and handles redirects properly', async () => {
-    expect.assertions(5)
+    expect.assertions(6)
     const Router = (await import('@minspa/router')).Router
     const rootElem = document.createElement('div')
     const page1Elem = document.createElement('h1')
@@ -111,7 +113,9 @@ describe('MinspaRouter.js unit tests', () => {
       { path: '/page1', page: { domElem: page1Elem } },
       { path: '/page2', page: { domElem: page2Elem } }
     ]
+    window.minspa = { onrouterinit: vi.fn() }
     const router = new Router(rootElem, pages)
+    expect(window.minspa.onrouterinit).toHaveBeenCalledWith(router)
     let redirectPath = '/page1'
     let path2Authorized = true
     const authCallback = vi.fn((path, { redirectTo, renderDomElem }) => {

@@ -14,6 +14,7 @@ class Router {
     pages.forEach(({ path, page }) => { this.registerRoute(path, page) })
     window.minspa = window.minspa || {}
     window.minspa.router = this
+    if (window.minspa.onrouterinit) window.minspa.onrouterinit(this)
   }
 
   registerRoute (path, { domElem = null, onRendered = null, onUnmount = null } = {}) {

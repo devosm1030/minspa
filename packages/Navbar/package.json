@@ -1,6 +1,6 @@
 {
   "name": "@minspa/navbar",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A vanilla navbar service module.",
   "main": "MinspaNavbar.js",
   "author": "Mike DeVos",

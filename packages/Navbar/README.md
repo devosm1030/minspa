@@ -394,22 +394,15 @@ if (user.isAdmin) {
 
 **Automatic Integration with Minspa Router:**
 
-The Minspa Navbar and Router modules are designed to auto-integrate seamlessly. When both modules are used together, no manual wiring is required - simply instantiate the Router first, then the Navbar, and they will connect automatically.
-
+The Minspa Navbar and Router modules are designed to auto-integrate seamlessly. When both modules are used together, no manual wiring is required - simply instantiate them both, and they will connect automatically. The only requirement is that the router be instantiated before the navbar is rendered.
 
 ```javascript
 import { Router } from '@minspa/router';
 import { Navbar } from '@minspa/navbar';
 
-// 1. Instantiate Router first - it registers to window.minspa.router
-const router = new Router(rootElem, pages);
-
-// 2. Instantiate Navbar - it detects the router and auto-integrates
-const navbar = new Navbar(navRoot, pages, userid);
-
-// 3. Render and start (no manual wiring needed!)
-navbar.render();
-router.initialNav();
+const navBar = new Navbar(navRoot, pages)
+new Router(rootElem, pages).initialNav()
+navBar.render()
 ```
 
 **Manual integration (if not using Minspa Router):**
