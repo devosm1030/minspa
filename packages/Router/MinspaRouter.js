@@ -12,6 +12,8 @@ class Router {
     Object.assign(this, { rootElem, routes: {}, pageElem: null, pathAuthCb: null, currPath: null, onUnmount: null, navListeners: [] })
     window.onpopstate = () => this.handleNav()
     pages.forEach(({ path, page }) => { this.registerRoute(path, page) })
+    window.minspa = window.minspa || {}
+    window.minspa.router = this
   }
 
   registerRoute (path, { domElem = null, onRendered = null, onUnmount = null } = {}) {

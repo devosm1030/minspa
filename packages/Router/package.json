@@ -1,6 +1,6 @@
 {
   "name": "@minspa/router",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A vanilla client side router module for SPA applications.",
   "main": "MinspaRouter.js",
   "author": "Mike DeVos",
