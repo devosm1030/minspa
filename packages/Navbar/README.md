@@ -81,6 +81,10 @@ From an ES module, import the package in your code:
 import { Navbar } from '<path/to/>MinspaNavbar.js'
 ```
 
+## Sample Screenshot
+
+![Navbar](navbar.png)
+
 ## API Reference
 
 ### `new Navbar(rootElem, navPages, userid?, styles?)`

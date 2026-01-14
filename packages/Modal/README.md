@@ -59,6 +59,14 @@ A lightweight, dependency-free modal service for vanilla JavaScript applications
 - **Smart Loader** - Delays to avoid flickering, one loader for multiple async operations
 - **Zero Dependencies** - Pure vanilla JavaScript
 
+## Sample Screenshots
+
+Confirmation modal:
+![Confirmation Modal](images/confirmation.png)
+
+Loader:
+![Loader](images/loader.png)
+
 ## API Reference
 
 ### `okModal(body, options)`
