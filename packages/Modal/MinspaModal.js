@@ -327,4 +327,5 @@ class ModalSvc {
   }
 }
 
-export { ModalSvc }
+const modalSvc = new ModalSvc()
+export { modalSvc, ModalSvc }
