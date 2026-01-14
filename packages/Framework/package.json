@@ -1,0 +1,25 @@
+{
+  "name": "@minspa/framework",
+  "version": "0.0.0",
+  "description": "A vanilla UI SPA framework.",
+  "main": "index.js",
+  "author": "Mike DeVos",
+  "license": "MIT",
+  "scripts": {
+    "publish": "npm publish --access public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devosm1030/minspa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/devosm1030/minspa/issues"
+  },
+  "homepage": "https://github.com/devosm1030/minspa#readme",
+  "dependencies": {
+    "@minspa/appstate": "^0.0.0",
+    "@minspa/modal": "^0.0.1",
+    "@minspa/navbar": "^0.0.2",
+    "@minspa/router": "^0.0.2"
+  }
+}
