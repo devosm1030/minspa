@@ -1,3 +1,17 @@
+/*
+  Minspa Modal  v0.0.0 (https://github.com/devosm1030/minspa/)
+  Copyright 2026 Mike DeVos
+  Licensed under MIT (https://github.com/devosm1030/minspa/blob/main/LICENSE)
+
+  A lightweight vanilla UI modal service with bootstrap like styling.
+*/
+
+/*
+  The following stylesheet is based on Bootstrap 5.3 Navbar styles, modified for use in Minspa.
+   * Bootstrap  v5.3.8 (https://getbootstrap.com/)
+   * Copyright 2011-2025 The Bootstrap Authors
+   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
+*/
 const modalStylesheet = /* css */`
 /* Shadow host styles */
 .modal-shadow-host {
