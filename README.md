@@ -324,6 +324,15 @@ Each package has comprehensive documentation with API references and examples:
 
 Contributions are welcome! Please feel free to submit issues, fork the repository, and create pull requests.
 
+**Important:** When submitting pull requests, please keep the core philosophy of the project in mind. Contributions must maintain Minspa's fundamental principles:
+
+- **Simplicity** - No complex abstractions or "magic" that obscures what's happening
+- **Modularity** - Each component should remain independent and usable standalone
+- **Modern Web Standards** - Built on standards-based APIs that work in modern browsers without polyfills
+- **Vanilla JavaScript** - No external dependencies or frameworks; pure JavaScript only
+
+Pull requests that introduce unnecessary complexity, tight coupling between modules, dependencies on non-standard APIs, or external dependencies may not be accepted.
+
 ## License
 
 MIT License - see [LICENSE](./LICENSE) file for details
