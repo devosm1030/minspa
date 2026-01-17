@@ -30,7 +30,7 @@ const handleInputClick = async () => {
     <div>
       <strong>⚠️ Danger Will Robinson!</strong> This demo renders user input unsanitized! 
       To see what can happen, try entering: <code>&lt;img src=x onerror="alert('XSS!')"&gt;</code>
-      <br><small>Alway validate untrusted user input, and use a library like DOMPurify to sanitize before rendering!</small>
+      <br><small>Always validate untrusted user input, and use a library like DOMPurify to sanitize before rendering!</small>
     </div>
   `
 
