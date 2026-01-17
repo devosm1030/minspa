@@ -105,7 +105,7 @@ await modalSvc.okModal(
 
 ### `okCancelModal(body, options)`
 
-Display a modal with OK and Cancel buttons. Returns a promise that resolves to true/false based on user selection.
+Display a modal with OK and Cancel buttons. Returns a promise that resolves to true/false based on user selection. Supports an `onOk` callback to extract data from the modal before it closes.
 
 **Parameters:**
 
@@ -115,10 +115,13 @@ Display a modal with OK and Cancel buttons. Returns a promise that resolves to t
   - `okLabel` (string) - Custom OK button text (default: "OK")
   - `cancelLabel` (string) - Custom Cancel button text (default: "Cancel")
   - `sanitizer` (function) - Function to sanitize HTML content
+  - `onOk` (function) - Callback executed when OK is clicked, receives the modal element as parameter
+
+**Returns:**
 
 - `Promise`
-  - resolves to true
-  - includesclose() method, enables closing the modal programatically without user input
+  - resolves to true/false based on user selection
+  - includes close() method, enables closing the modal programatically without user input
 
 **Example:**
 
@@ -175,6 +178,55 @@ const [result1, result2] = await Promise.all([fetchData(q1), fetchData(q2)])
 
 ## Advanced Examples
 
+### Adding Custom Styles
+
+The modal service supports adding custom styles globally using the `addStyles()` method. This is particularly useful for styling form controls or other elements within modals.
+
+```javascript
+// Add custom styles for form inputs
+modalSvc.addStyles(/* css */`
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+`)
+```
+
+**Note:** Adding styles via `addStyles()` applies them globally to all modals and is the recommended approach, especially when using Content Security Policy (CSP) headers. While you can include styles directly in the modal body HTML, that approach requires `unsafe-inline` CSP permissions.
+
+### Using onOk Callback to Extract Modal Data
+
+The `okCancelModal` supports an `onOk` callback that executes when the user clicks OK, allowing you to extract data from the modal before it closes:
+
+```javascript
+const inputModalBody = /* html */ `
+  <p>Please enter some data:</p>
+  <input type="text" id="userInput" class="form-control" placeholder="Type something...">
+`
+
+let userInputValue = ''
+
+const onOkCallback = (modalElement) => {
+  // Extract the input value from the modal
+  const inputField = modalElement.querySelector('#userInput')
+  userInputValue = inputField?.value || ''
+}
+
+const result = await modalSvc.okCancelModal(inputModalBody, {
+  title: 'User Input',
+  onOk: onOkCallback
+})
+
+if (userInputValue) {
+  // Use the extracted value
+  await modalSvc.okModal(`<p>You entered: <strong>${userInputValue}</strong></p>`, {
+    title: 'Your Input'
+  })
+}
+```
+
 ### Programmatic Modal Closing
 
 ```javascript
@@ -201,6 +253,8 @@ modalSvc.okModal('All done!')
 ```
 
 ### Content Sanitization
+
+Using DOMPurify as a sample sanitizer:
 
 ```javascript
 import DOMPurify from 'dompurify'

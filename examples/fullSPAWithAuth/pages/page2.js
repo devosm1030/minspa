@@ -1,5 +1,19 @@
 import { modalSvc } from '../lib/MinspaModal.js'
 
+/* this page shows how to use a modal to get user input */
+
+// Add custom input styles to the modal
+// - placing them in the inputModalBody works also, but requires unsafe-inline if using CSP headers
+// - adding them to the modalSvc here applies them globally to all modals, be sure to avoid conflicts
+modalSvc.addStyles(/* css */`
+  .form-control {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+  }
+`)
+
 const pageContent = document.createElement('div')
 pageContent.innerHTML = /* html */ `
   <div class="flex-grow-1 m-2">
@@ -12,7 +26,7 @@ pageContent.innerHTML = /* html */ `
 const handleInputClick = async () => {
   const inputModalBody = /* html */ `
     <p>Please enter some data:</p>
-    <input type="text" id="userInput" class="form-control" placeholder="Type something..." style="width: 100%; padding: 8px; border: 1px solid #ced4da; border-radius: 4px;">
+    <input type="text" id="userInput" class="form-control" placeholder="Type something...">
   `
 
   let userInputValue = ''

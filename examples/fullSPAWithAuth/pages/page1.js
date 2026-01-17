@@ -1,5 +1,7 @@
 import { modalSvc } from '../lib/MinspaModal.js'
 
+/* this page shows confirmation and loader modals */
+
 const pageContent = document.createElement('div')
 pageContent.innerHTML = /* html */ `
   <div class="flex-grow-1 m-2">
