@@ -1,5 +1,5 @@
 /*
-  Minspa Navbar  v0.0.0 (https://github.com/devosm1030/minspa/)
+  Minspa Navbar  v0.0.2 (https://github.com/devosm1030/minspa/)
   Copyright 2026 Mike DeVos
   Licensed under MIT (https://github.com/devosm1030/minspa/blob/main/LICENSE)
 
