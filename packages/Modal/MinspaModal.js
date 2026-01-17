@@ -1,5 +1,5 @@
 /*
-  Minspa Modal  v0.0.0 (https://github.com/devosm1030/minspa/)
+  Minspa Modal  v0.0.2 (https://github.com/devosm1030/minspa/)
   Copyright 2026 Mike DeVos
   Licensed under MIT (https://github.com/devosm1030/minspa/blob/main/LICENSE)
 
@@ -218,6 +218,17 @@ class ModalSvc {
     this.queuedModals = []
     this.nextModalId = 0
     this.openModal = null
+    this.stylesheet = modalStylesheet
+  }
+
+  addStyles (cssText) {
+    this.stylesheet += '\n' + cssText
+    return this
+  }
+
+  overrideStyles (cssText) {
+    this.stylesheet = cssText
+    return this
   }
 
   showModal (modalElement) {
@@ -231,7 +242,7 @@ class ModalSvc {
 
     // Add stylesheet to shadow DOM
     const styleElement = document.createElement('style')
-    styleElement.textContent = modalStylesheet
+    styleElement.textContent = this.stylesheet
     shadowRoot.appendChild(styleElement)
 
     // Add modal to shadow DOM
@@ -286,13 +297,17 @@ class ModalSvc {
 
   okCancelModal (body, options = {}) {
     const { promise, resolve } = Promise.withResolvers()
-    const { title = null, okLabel = null, cancelLabel = null, hideCancel = false, sanitizer = null } = options
+    const { title = null, okLabel = null, cancelLabel = null, hideCancel = false, sanitizer = null, onOk = null } = options
     const safeBody = sanitizer ? sanitizer(body) : body
     const safeTitle = sanitizer && title ? sanitizer(title) : title
     const modalElement = createElementFromHTML(okCancelModalHtml({ body: safeBody, title: safeTitle, okLabel, cancelLabel }))
     if (!title) modalElement.querySelector('.modal-header').classList.add('hidden')
     if (hideCancel) modalElement.querySelector('.modal-cancel-button').classList.add('hidden')
-    modalElement.okHandler = () => { resolve(true); this.hideCurrentModal() }
+    modalElement.okHandler = () => {
+      if (onOk) onOk(modalElement) // allow caller to do extra processing like extracting data from modal inputs
+      resolve(true)
+      this.hideCurrentModal()
+    }
     modalElement.cancelHandler = () => { resolve(false); this.hideCurrentModal() }
     if (!hideCancel) modalElement.querySelector('.modal-cancel-button').addEventListener('click', modalElement.cancelHandler)
     modalElement.querySelector('.modal-ok-button').addEventListener('click', modalElement.okHandler)

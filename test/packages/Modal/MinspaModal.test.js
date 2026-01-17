@@ -164,4 +164,39 @@ describe('MinspaModal.js unit tests', () => {
     await vi.advanceTimersByTimeAsync(320)
     expect(document.body.classList.contains('modal-open')).toBe(false)
   })
+
+  test('overides styles properly', async () => {
+    expect.assertions(4)
+    const { ModalSvc } = await import('@minspa/modal')
+    const modalSvc = new ModalSvc()
+    modalSvc.addStyles('.modal { background-color: red; }')
+    expect(modalSvc.stylesheet).toContain('background-color: red;')
+    expect(modalSvc.stylesheet).toContain('display: block;') // original styles still present
+    modalSvc.overrideStyles('.modal { background-color: red; }')
+    expect(modalSvc.stylesheet).toContain('background-color: red;')
+    expect(modalSvc.stylesheet).not.toContain('display: block;')
+  })
+
+  test('okCancelModal onOk callback works as expected', async () => {
+    expect.assertions(4)
+    const { ModalSvc } = await import('@minspa/modal')
+    const modalSvc = new ModalSvc()
+    const mockOnOk = vi.fn((modalElement) => {
+      const inputField = modalElement.querySelector('#inputField')
+      expect(inputField.value).toBe('Test Input')
+    })
+    const inputForm = '<div><label for="inputField">Input:</label><input type="text" id="inputField" /></div>'
+    const resultPromise = modalSvc.okModal(inputForm, { title: 'Test Title', onOk: mockOnOk })
+    await vi.advanceTimersByTimeAsync(20)
+    const shadowRoot = document.body.querySelector('.modal-shadow-host').shadowRoot
+    const inputField = shadowRoot.querySelector('#inputField')
+    const okButton = shadowRoot.querySelector('.modal-ok-button')
+    inputField.value = 'Test Input'
+    okButton.click()
+    const result = await resultPromise
+    expect(result).toBe(true)
+    expect(mockOnOk).toHaveBeenCalledTimes(1)
+    await vi.advanceTimersByTimeAsync(320)
+    expect(modalSvc.openModal).toBeNull()
+  })
 })

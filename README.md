@@ -26,7 +26,7 @@ Minspa is a collection of standalone JavaScript components designed to work toge
 
 ## What is Minspa?
 
-Minspa (Minimal SPA) is a lightweight alternative to heavy frameworks like React, Angular, or Vue. It provides the essential building blocks for modern single-page applications without the complexity, build tooling requirements, or large bundle sizes typical of traditional frameworks.
+Minspa (Mini SPA) is a lightweight alternative to heavy frameworks like React, Angular, or Vue. It provides the essential building blocks for modern single-page applications without the complexity, build tooling requirements, or large bundle sizes typical of traditional frameworks.
 
 Think of Minspa as a "framework toolkit" - you get:
 
@@ -186,14 +186,13 @@ Minspa excels in scenarios where you want:
 
 - Small to medium-sized applications where bundle size matters
 - Projects that don't need the complexity of React/Angular/Vue
-- Applications that prioritize fast load times
+- Projects with simple UI requirements where performance optimizations are not necessary.
 
 ### ✅ Build-Tool-Free Development
 
 - Prototypes and demos that need to run directly in the browser
-- Learning projects where understanding the code is important
 - Situations where you can't or don't want to use Node.js/npm
-- Quick experiments without scaffolding overhead
+- Quick experiments without scaffolding overhead or complex setup requirements
 
 ### ✅ Full Control
 
@@ -204,8 +203,7 @@ Minspa excels in scenarios where you want:
 ### ✅ Vanilla JavaScript Projects
 
 - Teams that prefer native JavaScript over framework abstractions
-- Educational contexts teaching web fundamentals
-- Projects that value standards-based code over framework magic
+- Applications that are intended to be completely Vanilla JavaScript
 
 ## What Minspa is Not Good For
 
@@ -236,13 +234,6 @@ Minspa may not be the best choice when you need:
 
 **Consider instead:** Vue, Svelte, SolidJS
 
-### ❌ TypeScript-First Development
-
-- Projects requiring strong typing throughout
-- Large teams benefiting from type safety
-
-**Note:** While you can use TypeScript with Minspa, the framework itself is written in vanilla JavaScript and doesn't provide TypeScript definitions
-
 ### ❌ Legacy Browser Support
 
 - Applications that must support Internet Explorer or older browsers
@@ -259,11 +250,9 @@ Minspa intentionally stays minimal and does not provide:
 
 - **DOM Abstraction** - You're responsible for your own DOM manipulation and rendering logic. Minspa provides routing and state management, but page content creation is up to you using vanilla JavaScript DOM APIs
 - **Advanced Optimizations** - No built-in virtual DOM diffing, automatic memoization, or performance optimizations. You control when and how the DOM updates. For simple applications this may be fine. For more complex applications with performance considerations, this may be a concern.
-- **Safety Features** - No automatic XSS protection or input sanitization. However, you can easily integrate lightweight libraries like [DOMPurify](https://github.com/cure53/DOMPurify) for sanitization or other focused security tools. This approach keeps Minspa minimal while giving you flexibility to add only the security features your application needs
+- **Safety Features** - No automatic XSS protection or input sanitization. However, you can easily integrate lightweight libraries like [DOMPurify](https://github.com/cure53/DOMPurify) in a Minspa project for sanitization or other focused security tools. This approach keeps Minspa minimal while giving you flexibility to add the security features your application needs
 
 **Consider instead:** React, Vue, Angular, or Svelte - these frameworks provide comprehensive solutions with built-in security features and optimized rendering
-
-**Why Minspa makes these trade-offs:** Keeping the framework minimal means you have complete control and transparency, but it also requires developer awareness of security best practices. The benefit is you can choose battle-tested tools like DOMPurify that do one thing well, rather than relying on framework-specific implementations.
 
 ## Examples
 
@@ -326,7 +315,6 @@ Contributions are welcome! Please feel free to submit issues, fork the repositor
 
 **Important:** When submitting pull requests, please keep the core philosophy of the project in mind. Contributions must maintain Minspa's fundamental principles:
 
-- **Simplicity** - No complex abstractions or "magic" that obscures what's happening
 - **Modularity** - Each component should remain independent and usable standalone
 - **Modern Web Standards** - Built on standards-based APIs that work in modern browsers without polyfills
 - **Vanilla JavaScript** - No external dependencies or frameworks; pure JavaScript only

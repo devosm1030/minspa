@@ -22,7 +22,7 @@ User configuration is located in **`config.js`**. This file defines the availabl
 
 ### Test Users
 
-The following users are available for testing:
+The following users are available for testing (any password is valid for these users):
 
 - **user1**: Has access to `/page1`, `/page2`, `/stretchex`, and `/secretpage`
 - **user2**: Has access to `/page2` only
