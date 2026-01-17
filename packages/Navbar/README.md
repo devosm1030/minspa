@@ -409,7 +409,7 @@ new Router(rootElem, pages).initialNav()
 navBar.render()
 ```
 
-**Manual integration (if not using Minspa Router):**
+**Manual integration (if not using [Minspa Router](https://github.com/devosm1030/minspa/tree/main/packages/Router)):**
 
 If you're using a different router or custom navigation system, you can manually wire the integration:
 

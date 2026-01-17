@@ -13,11 +13,14 @@
 - [Overview](#overview)
 - [What is Minspa?](#what-is-minspa)
 - [Core Packages](#core-packages)
-- [Installation Options](#installation-options)
+- [Installation and Usage](#installation-and-usage)
+- [Component Details](#component-details)
 - [What Minspa is Good For](#what-minspa-is-good-for)
 - [What Minspa is Not Good For](#what-minspa-is-not-good-for)
 - [Examples](#examples)
 - [Philosophy](#philosophy)
+- [Documentation](#documentation)
+- [Contributing](#contributing)
 - [License](#license)
 
 ## Overview
@@ -46,6 +49,8 @@ Think of Minspa as a "framework toolkit" - you get:
 
 ## Core Packages
 
+Minspa is a collection of standalone JavaScript components that can be used independently or together as a complete framework. Each component is available as an individual npm package, or you can install the all-in-one framework package.
+
 ### [@minspa/framework](./packages/Framework/)
 
 An all-in-one package that bundles all Minspa components together. Install this if you want the complete framework with a single dependency.
@@ -54,11 +59,24 @@ An all-in-one package that bundles all Minspa components together. Install this 
 npm install @minspa/framework
 ```
 
+```javascript
+import { Router, appstate, Navbar, modalSvc } from '@minspa/framework'
+```
+
+This is the recommended approach for most projects using multiple Minspa components, as it provides:
+
+- **Single Dependency** - Install all Minspa components with one command
+- **Consistent Versioning** - All components are version-matched for compatibility
+- **Simpler Imports** - Import all components from one package
+- **Zero External Dependencies** - While this requires Node.js for package management, the framework itself still has zero external dependencies
+
 ### [@minspa/router](./packages/Router/)
 
 A lightweight client-side router for handling navigation, route registration, authentication, and lifecycle management.
 
-**Features:**
+**Package:** `@minspa/router`
+
+**Key Features:**
 
 - Route registration with path-based navigation
 - Authentication and authorization hooks
@@ -73,11 +91,15 @@ A lightweight client-side router for handling navigation, route registration, au
 - Page lifecycle management
 - Integration with navigation components
 
+[View full documentation →](./packages/Router/README.md)
+
 ### [@minspa/appstate](./packages/AppState/)
 
 Reactive state management with built-in sessionStorage persistence support.
 
-**Features:**
+**Package:** `@minspa/appstate`
+
+**Key Features:**
 
 - Event-based publish-subscribe pattern
 - Automatic persistence to sessionStorage
@@ -92,11 +114,15 @@ Reactive state management with built-in sessionStorage persistence support.
 - Cross-component communication
 - Persisting state across page refreshes
 
+[View full documentation →](./packages/AppState/README.md)
+
 ### [@minspa/navbar](./packages/Navbar/)
 
 A responsive navigation bar component with Bootstrap-like styling and Shadow DOM encapsulation.
 
-**Features:**
+**Package:** `@minspa/navbar`
+
+**Key Features:**
 
 - Bootstrap-style appearance (no Bootstrap dependency)
 - Shadow DOM for style isolation
@@ -112,11 +138,15 @@ A responsive navigation bar component with Bootstrap-like styling and Shadow DOM
 - User identification display
 - Responsive mobile navigation
 
+[View full documentation →](./packages/Navbar/README.md)
+
 ### [@minspa/modal](./packages/Modal/)
 
 A lightweight modal service for displaying dialogs with Bootstrap-like styling.
 
-**Features:**
+**Package:** `@minspa/modal`
+
+**Key Features:**
 
 - Shadow DOM style encapsulation
 - Promise-based API (async/await support)
@@ -132,9 +162,11 @@ A lightweight modal service for displaying dialogs with Bootstrap-like styling.
 - Loading indicators
 - Form dialogs
 
-## Installation Options
+[View full documentation →](./packages/Modal/README.md)
 
-Minspa offers three flexible installation approaches:
+## Installation and Usage
+
+Minspa offers three flexible installation approaches to fit your project needs:
 
 ### Option 1: NPM Framework Package (Recommended for most projects)
 
@@ -144,9 +176,18 @@ Install all components with one command:
 npm install @minspa/framework
 ```
 
+**Usage:**
+
 ```javascript
 import { Router, appstate, Navbar, modalSvc } from '@minspa/framework'
 ```
+
+**When to use:**
+
+- You're using **multiple Minspa components** in your project
+- You prefer the **convenience of a single dependency**
+- You're already using **Node.js and npm** in your workflow
+- You want **consistent versioning** across all components
 
 ### Option 2: Individual NPM Packages
 
@@ -156,10 +197,17 @@ Install only what you need:
 npm install @minspa/router @minspa/appstate
 ```
 
+**Usage:**
+
 ```javascript
 import { Router } from '@minspa/router'
 import { appstate } from '@minspa/appstate'
 ```
+
+**When to use:**
+
+- You only need **one or two components** from Minspa
+- You want **fine-grained control** over component versions
 
 ### Option 3: Vanilla (No Build Tools Required)
 
@@ -177,6 +225,99 @@ import { appstate } from './lib/MinspaAppstate.js'
 - Direct browser ES module imports
 - Full control over source code
 - Zero abstraction - see exactly what you're running
+
+**When to use:**
+
+- You want to avoid Node.js/npm entirely
+- You prefer to directly copy and customize component source files
+- You're working on a simple project without a build system
+- You want maximum control and transparency
+
+### Import Comparison
+
+Here's how imports differ across the three approaches:
+
+**Using the Framework package:**
+
+```javascript
+// Single import for all components
+import { Router, appstate, appstateFor, Navbar, modalSvc } from '@minspa/framework'
+```
+
+**Using individual packages:**
+
+```javascript
+// Separate imports for each component
+import { Router } from '@minspa/router'
+import { appstate, appstateFor } from '@minspa/appstate'
+import { Navbar } from '@minspa/navbar'
+import { modalSvc } from '@minspa/modal'
+```
+
+**Using vanilla (no Node.js required):**
+
+```javascript
+// Import from locally cloned files
+import { Router } from './lib/MinspaRouter.js'
+import { appstate, appstateFor } from './lib/MinspaAppstate.js'
+import { Navbar } from './lib/MinspaNavbar.js'
+import { modalSvc } from './lib/MinspaModal.js'
+```
+
+## Component Details
+
+Each Minspa component is designed to be fully functional as a standalone module while also working seamlessly with other Minspa components. Below is a more detailed look at each component's capabilities.
+
+### Router
+
+The Router component provides sophisticated client-side routing with authentication and authorization support.
+
+**Key Capabilities:**
+
+- **Route Registration and Navigation** - Register routes with path patterns and handlers. Navigate between pages programmatically or via HTML links
+- **Authentication Hooks** - Built-in support for authentication checks before rendering protected routes
+- **Authorization** - Role-based access control with customizable authorization logic
+- **Lifecycle Hooks** - Execute code when pages mount (onRendered) and unmount (onUnmount)
+- **History Integration** - Seamlessly integrates with the browser's History API for back/forward navigation
+- **Navigation Listeners** - Subscribe to navigation events for cross-component coordination
+
+### Appstate
+
+A lightweight state management solution using an event-driven pub-sub pattern with optional persistence.
+
+**Key Capabilities:**
+
+- **Event-Based Updates** - Subscribe to state changes with custom event handlers
+- **Automatic Persistence** - Optionally persist state to sessionStorage with automatic serialization
+- **Multiple Instances** - Create isolated state instances for different parts of your application
+- **Proxy Access** - Access and modify state properties directly through a proxy interface
+- **Cross-Environment** - Works in both browser and Node.js environments
+
+### Navbar
+
+A fully-featured responsive navigation component with mobile support.
+
+**Key Capabilities:**
+
+- **Shadow DOM Encapsulation** - Styles are completely isolated from your application's CSS
+- **Bootstrap-Style Design** - Professional appearance without requiring Bootstrap
+- **Mobile-Responsive** - Automatically collapses to a hamburger menu on mobile devices
+- **Active State** - Automatically highlights the current page
+- **Route Visibility** - Control which routes show the navbar and which don't
+- **User Display** - Optional user information display with customizable formatting
+
+### Modal
+
+A modal service for displaying dialogs without requiring manual DOM manipulation.
+
+**Key Capabilities:**
+
+- **Promise-Based API** - Use async/await for clean, readable code when waiting for user responses
+- **Automatic Queuing** - Display multiple modals sequentially without manual queue management
+- **Modal Types** - Pre-built OK, confirmation, and loader/busy modal types
+- **Smart Loader** - Loader modals with built-in delay to prevent flickering on fast operations
+- **Multiple Loaders** - Coordinate multiple simultaneous async operations with loader tracking
+- **Shadow DOM** - Fully encapsulated styles that won't conflict with your application
 
 ## What Minspa is Good For
 

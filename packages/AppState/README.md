@@ -64,7 +64,7 @@ import { appstate } from '@minspa/appstate'
 
 #### Vanilla Installation
 
-Clone [MinspaAppstate.js](https://github.com/devosm1030/minspa/blob/main/packages/Appstate/MinspaAppstate.js) into your project.
+Clone [MinspaAppstate.js](https://github.com/devosm1030/minspa/blob/main/packages/AppState/MinspaAppstate.js) into your project.
 
 #### Vanilla Usage
 

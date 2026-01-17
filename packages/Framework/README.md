@@ -1,93 +1,87 @@
-# Minspa Framework
+# Minspa Framework Package
 
-A convenient all-in-one package for the Minspa framework that bundles all core components into a single dependency. Install this package to get the complete Minspa framework with one command.
+**[Minspa](https://github.com/devosm1030/minspa)** is a modern lightweight UI framework for building Single Page Applications (SPAs) with vanilla JavaScript.
 
-**[Minspa](https://github.com/devosm1030/minspa)** is a modern lightweight UI SPA framework.
+This is the all-in-one framework package that bundles all Minspa components into a single dependency. Install this package to get the complete Minspa framework with one command.
 
-- Modular - Written as ES modules, supported by all modern browsers.
-- Dependency free - No nested dependencies.
-- Vanilla - Components can be cloned and used as-is, directly within your project without the need for bundling.
+- **Modular** - Written as ES modules, supported by all modern browsers
+- **Dependency free** - Zero external dependencies
+- **Flexible** - Use as npm packages or clone components directly into your project
+- **Vanilla JavaScript** - No build tools required (but fully compatible with bundlers)
+- **Lightweight** - Minimal footprint with maximum functionality
 
-## Table of Contents
-
-- [Overview](#overview)
-- [Installation and Usage](#installation-and-usage)
-- [Included Packages](#included-packages)
-  - [Router](#router)
-  - [Appstate](#appstate)
-  - [Navbar](#navbar)
-  - [Modal](#modal)
-- [When to Use This Package](#when-to-use-this-package)
-
-## Overview
-
-The Minspa Framework package provides a unified way to install all Minspa components as a single dependency. This is ideal for projects using multiple Minspa components and prefer the convenience of managing them together.
-
-Each Minspa component is designed to function as a completely independent standalone component, so you can pick and choose any or all of the components you wish to use in your project. But they are also designed to function together as seamless SPA framework, and this package provides a simple way to install and use them all together as a complete framework for your SPA project.
-
-### Key Points
-
-- **Single Dependency** - Install all Minspa components with one command
-- **Requires Node.js** - Unlike the vanilla approach of cloning individual component files, this package requires a Node.js environment with npm
-- **Zero External Dependencies** - While this requires Node.js for package management, the framework itself still has zero external dependencies
-- **Consistent Versioning** - All components are version-matched for compatibility
-
-## Installation and Usage
+## Quick Start
 
 ### Installation
 
-In your project directory, install the dependency on the command line:
-
 ```bash
-npm install --save @minspa/framework
+npm install @minspa/framework
 ```
 
 ### Usage
 
-Import components from the framework package in your code:
+Import components from the framework package:
 
 ```javascript
 import { Router, appstate, Navbar, modalSvc } from '@minspa/framework'
 ```
 
-### Import Comparison: Framework vs Individual Packages
+## What's Included
 
-**Using the Framework package:**
+The Framework package includes all core Minspa components:
 
-```javascript
-// Single import for all components
-import { Router, appstate, appstateFor, Navbar, modalSvc } from '@minspa/framework'
+- **[@minspa/router](https://github.com/devosm1030/minspa/tree/main/packages/Router)** - Client-side routing with authentication and lifecycle management
+- **[@minspa/appstate](https://github.com/devosm1030/minspa/tree/main/packages/AppState)** - Reactive state management with persistence
+- **[@minspa/navbar](https://github.com/devosm1030/minspa/tree/main/packages/Navbar)** - Responsive navigation component with Shadow DOM
+- **[@minspa/modal](https://github.com/devosm1030/minspa/tree/main/packages/Modal)** - Modal dialogs with promise-based API
+
+## Why Use This Package?
+
+### Advantages
+
+- **Single Dependency** - Install all Minspa components with one command
+- **Consistent Versioning** - All components are version-matched for compatibility
+- **Simpler Imports** - Import everything from one package
+- **Zero External Dependencies** - No nested dependencies to manage
+
+### When to Use
+
+✅ **Use the Framework package when:**
+
+- You're using **multiple Minspa components** in your project
+- You prefer the **convenience of a single dependency**
+- You're already using **Node.js and npm** in your workflow
+- You want **consistent versioning** across all components
+
+### Alternatives
+
+**Individual Packages** - Install only what you need:
+
+```bash
+npm install @minspa/router @minspa/appstate
 ```
 
-**Using individual packages:**
-
 ```javascript
-// Separate imports for each component
 import { Router } from '@minspa/router'
-import { appstate, appstateFor } from '@minspa/appstate'
-import { Navbar } from '@minspa/navbar'
-import { modalSvc } from '@minspa/modal'
+import { appstate } from '@minspa/appstate'
 ```
 
-**Using vanilla (no Node.js required):**
+Use individual packages when you only need one or two components or want fine-grained control over component versions.
+
+**Vanilla Files** - Clone component files directly into your project:
 
 ```javascript
-// Import from locally cloned files
 import { Router } from './lib/MinspaRouter.js'
-import { appstate, appstateFor } from './lib/MinspaAppstate.js'
-import { Navbar } from './lib/MinspaNavbar.js'
-import { modalSvc } from './lib/MinspaModal.js'
+import { appstate } from './lib/MinspaAppstate.js'
 ```
 
-## Included Packages
+Use vanilla files when you want to avoid Node.js/npm entirely, prefer to directly customize source files, or want maximum control and transparency.
 
-The Framework package includes all core Minspa components. Below is a brief overview of each. For detailed API references and advanced usage, please refer to each component's individual README file.
+## Component Overview
 
 ### Router
 
-**Package:** `@minspa/router`  
-
-A lightweight, client-side router for single-page applications that handles navigation, route registration, authentication, and lifecycle management. 
+Client-side routing for single-page applications with authentication and lifecycle management.
 
 **Key Features:**
 
@@ -97,11 +91,11 @@ A lightweight, client-side router for single-page applications that handles navi
 - Browser history integration
 - Navigation listeners
 
+[View full Router documentation →](https://github.com/devosm1030/minspa/tree/main/packages/Router)
+
 ### Appstate
 
-**Package:** `@minspa/appstate`  
-
-A lightweight, flexible state management library with built-in persistence support using browser sessionStorage.
+Reactive state management with built-in sessionStorage persistence.
 
 **Key Features:**
 
@@ -111,11 +105,11 @@ A lightweight, flexible state management library with built-in persistence suppo
 - Proxy-based property access
 - Browser and Node.js compatible
 
+[View full Appstate documentation →](https://github.com/devosm1030/minspa/tree/main/packages/AppState)
+
 ### Navbar
 
-**Package:** `@minspa/navbar`  
-
-A responsive navigation bar component with Bootstrap-like styling that works seamlessly in modern web applications.
+Responsive navigation bar component with Bootstrap-like styling.
 
 **Key Features:**
 
@@ -126,11 +120,11 @@ A responsive navigation bar component with Bootstrap-like styling that works sea
 - User display support
 - Customizable styling
 
+[View full Navbar documentation →](https://github.com/devosm1030/minspa/tree/main/packages/Navbar)
+
 ### Modal
 
-**Package:** `@minspa/modal`  
-
-A lightweight modal service with Bootstrap-like styling for displaying informational, confirmation, and loader/busy modals.
+Modal service for displaying dialogs with Bootstrap-like styling.
 
 **Key Features:**
 
@@ -140,27 +134,50 @@ A lightweight modal service with Bootstrap-like styling for displaying informati
 - Smart loader with flicker prevention
 - Multiple modal types (info, confirmation, loader)
 
-## When to Use This Package
+[View full Modal documentation →](https://github.com/devosm1030/minspa/tree/main/packages/Modal)
 
-### Use the Framework Package When
+## Examples
 
-- You're using **multiple Minspa components** in your project
-- You prefer the **convenience of a single dependency**
-- You're already using **Node.js and npm** in your workflow
-- You want **consistent versioning** across all components
+The [Minspa repository](https://github.com/devosm1030/minspa) includes complete working examples:
 
-### Use Individual Packages When
+### [Basic Navigation Example](https://github.com/devosm1030/minspa/tree/main/examples/basicNavigation)
 
-- You only need **one or two components** from Minspa
-- You want **fine-grained control** over component versions
+A simple SPA demonstrating routing and navigation without authentication.
 
-### Use Vanilla Files When
+**Demonstrates:**
 
-- You want to avoid Node.js/npm entirely
-- You prefer to directly copy and customize component source files
-- You're working on a simple project without a build system
-- You want maximum control and transparency
+- Basic routing setup
+- Navbar integration
+- Page navigation
+- Vanilla JavaScript usage (no build tools)
 
----
+### [Full SPA with Authentication Example](https://github.com/devosm1030/minspa/tree/main/examples/fullSPAWithAuth)
 
-For detailed documentation on each component's API, advanced usage patterns, and examples, please refer to the individual README files for each package.
+A complete SPA with authentication, authorization, and role-based access control.
+
+**Demonstrates:**
+
+- User authentication flows
+- Protected routes
+- Role-based page access
+- State management with persistence
+- Modal dialogs
+- Session handling
+
+Both examples can be run directly in a web browser without any build step.
+
+## Full Documentation
+
+For comprehensive documentation including:
+
+- What Minspa is and its design philosophy
+- Detailed component capabilities and use cases
+- When to use (or not use) Minspa
+- API references and examples
+- Contributing guidelines
+
+Please see the [main Minspa documentation](https://github.com/devosm1030/minspa).
+
+## License
+
+MIT License - see [LICENSE](https://github.com/devosm1030/minspa/blob/main/LICENSE) file for details
