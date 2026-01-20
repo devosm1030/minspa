@@ -1,6 +1,6 @@
 {
   "name": "@minspa/framework",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A vanilla UI SPA framework.",
   "main": "index.js",
   "author": "Mike DeVos",
@@ -18,7 +18,7 @@
   "homepage": "https://github.com/devosm1030/minspa#readme",
   "dependencies": {
     "@minspa/appstate": "^0.0.0",
-    "@minspa/modal": "^0.0.2",
+    "@minspa/modal": "^0.0.3",
     "@minspa/navbar": "^0.0.2",
     "@minspa/router": "^0.0.2"
   }
