@@ -1,5 +1,5 @@
 /*
-  Minspa Modal  v0.0.2 (https://github.com/devosm1030/minspa/)
+  Minspa Modal  v0.0.3 (https://github.com/devosm1030/minspa/)
   Copyright 2026 Mike DeVos
   Licensed under MIT (https://github.com/devosm1030/minspa/blob/main/LICENSE)
 
@@ -44,7 +44,7 @@ const modalStylesheet = /* css */`
 
 /* Hidden class for headers/buttons */
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 @keyframes fadeIn {
